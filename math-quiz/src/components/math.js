@@ -24,16 +24,17 @@ const MathExercise = () => {
   };
 
   const generateSingleEquation = () => {
-    generateRandomNumbers();
-    const operator = generateRandomOperator();
+    let operator;
+    do { //this loop makes sure that the math question can never be '0/0'
+      generateRandomNumbers();
+      operator = generateRandomOperator();
+    } while (operator === '/' && b === 0); 
     setEquation(`${a} ${operator} ${b}`);
   };
 
   const generateDifficultEquation = () => {
     const numOperands = _.random(2, 5); // number of operations
     const operands = Array.from({ length: numOperands }, () => _.random(1, 10)); // Random operands array
-
-    const operators = ['+', '-', '*', '/'];
     const equation = operands.reduce((acc, operand, index) => {
       const randomOperator = generateRandomOperator();
       const separator = index === 0 ? '' : ' ' + randomOperator + ' ';
