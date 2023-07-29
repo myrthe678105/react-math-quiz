@@ -2,33 +2,32 @@ import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 
 const MathExercise = () => {
-  const [a, setA] = useState(0);
-  const [b, setB] = useState(0);
-  const [equation, setEquation] = useState(null);
+  const [equation, setEquation] = useState('');
   const [userAnswer, setUserAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState(null);
   const [difficulty, setDifficulty] = useState('easy'); // 'easy' or 'difficult'
 
   useEffect(() => {
     generateExercise();
+    generateRandomNumbers(); // Generate initial random numbers when the component mounts
   }, [difficulty]);
 
-  const generateRandomNumbers = () => {
-    setA(_.random(1, 10));
-    setB(_.random(1, 10));
+  const generateRandomNumbers = (min, max) => {
+    return _.random(min, max);
   };
 
   const generateRandomOperator = () => {
     const operators = ['+', '-', '*', '/'];
     return _.sample(operators);
   };
-
   const generateSingleEquation = () => {
     let operator;
+    let a, b;
     do { //this loop makes sure that the math question can never be '0/0'
-      generateRandomNumbers();
+      a = generateRandomNumbers(0, 10);
+      b = generateRandomNumbers(0, 10);
       operator = generateRandomOperator();
-    } while (operator === '/' && b === 0); 
+    } while (operator === '/' && b === 0);
     setEquation(`${a} ${operator} ${b}`);
   };
 
@@ -63,12 +62,16 @@ const MathExercise = () => {
     }
     console.log(expectedResult);
   
-    if (userParsedAnswer === parseFloat(expectedResult)) {
-      setIsCorrect(true);
-    } else {
-      setIsCorrect(false);
-    }
-  };
+    if (userParsedAnswer === parseFloat(expectedResult)) { //check for correct answer, if correct, new question after 3 seconds
+        setIsCorrect(true);
+        setTimeout(() => {
+          generateExercise(); 
+          setIsCorrect(null);
+        }, 3000);
+      } else {
+        setIsCorrect(false);
+      }
+    };
   
 
   return (
