@@ -61,9 +61,10 @@ const MathExercise = () => {
     if (userParsedAnswer === parseFloat(expectedResult)) { //check for correct answer, if correct, new question after 3 seconds
         setIsCorrect(true);
         setTimeout(() => {
+            setUserAnswer('');
           generateExercise(); 
           setIsCorrect(null);
-        }, 3000);
+        }, 2000);
       } else {
         setIsCorrect(false);
       }
