@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
+import '../App.css'
 
 const MathExercise = () => {
   const [equation, setEquation] = useState('');
@@ -73,8 +74,7 @@ const MathExercise = () => {
 
   return (
     <div>
-      <h1>Math Exercise</h1>
-      <div>
+      <div className="component-container">
         <label>
           <input
             type="radio"
