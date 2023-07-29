@@ -9,7 +9,6 @@ const MathExercise = () => {
 
   useEffect(() => {
     generateExercise();
-    generateRandomNumbers(); // Generate initial random numbers when the component mounts
   }, [difficulty]);
 
   const generateRandomNumbers = (min, max) => {
@@ -22,13 +21,8 @@ const MathExercise = () => {
   };
   const generateSingleEquation = () => {
     let operator;
-    let a, b;
-    do { //this loop makes sure that the math question can never be '0/0'
-      a = generateRandomNumbers(0, 10);
-      b = generateRandomNumbers(0, 10);
-      operator = generateRandomOperator();
-    } while (operator === '/' && b === 0);
-    setEquation(`${a} ${operator} ${b}`);
+    operator = generateRandomOperator();
+    setEquation(`${generateRandomNumbers(1, 10)} ${operator} ${generateRandomNumbers(1, 10)}`);
   };
 
   const generateDifficultEquation = () => {
@@ -59,6 +53,8 @@ const MathExercise = () => {
     let expectedResult;
     if (evaluatedResult % 1 !== 0) { // if answer has dec places, change expected result to 2 dec places
       expectedResult = evaluatedResult.toFixed(2);
+    } else{
+        expectedResult = evaluatedResult.toString();
     }
     console.log(expectedResult);
   
