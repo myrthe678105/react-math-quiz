@@ -54,15 +54,22 @@ const MathExercise = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const expectedResult = eval(equation);
+    const evaluatedResult = eval(equation);
     const userParsedAnswer = parseFloat(userAnswer);
-
-    if (userParsedAnswer === expectedResult) {
+  
+    let expectedResult;
+    if (evaluatedResult % 1 !== 0) { // if answer has dec places, change expected result to 2 dec places
+      expectedResult = evaluatedResult.toFixed(2);
+    }
+    console.log(expectedResult);
+  
+    if (userParsedAnswer === parseFloat(expectedResult)) {
       setIsCorrect(true);
     } else {
       setIsCorrect(false);
     }
   };
+  
 
   return (
     <div>
