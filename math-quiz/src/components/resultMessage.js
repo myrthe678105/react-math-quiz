@@ -15,7 +15,7 @@ const ResultMessage = ({ isCorrect }) => {
           ) : (
             <>
             <h3> Try Again </h3>
-              <FontAwesomeIcon icon={faSquareXmark} style={{ fontSize: '6em', color: '#d26a6a' }} />
+              <FontAwesomeIcon icon={faSquareXmark} style={{ fontSize: '6em', color: '#900603' }} />
             </>
           )}
         </>

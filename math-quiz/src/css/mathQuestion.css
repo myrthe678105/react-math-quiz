@@ -1,0 +1,9 @@
+.math-question{
+    font-size: 2em;
+    display: flex;
+    margin-top: 10%;
+    margin-left: 10%;
+  }
+  .small-text{
+    font-size: 25px;
+  }

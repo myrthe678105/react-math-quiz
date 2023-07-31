@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
-import '../App.css';
+import '../css/App.css';
+import '../css/mathQuestion.css';
+import '../css/radioButton.css';
+import '../css/resultMessage.css';
+import '../css/userInput.css';
 
 // Import the components we created
 import DifficultySelector from './radioButton';

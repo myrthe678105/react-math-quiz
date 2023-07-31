@@ -10,7 +10,7 @@ const DifficultySelector = ({ difficulty, setDifficulty }) => {
   };
 
   return (
-    <div className="component-container">
+    <div className="radioBtn-container">
       <FormControlLabel
         control={
           <Switch
