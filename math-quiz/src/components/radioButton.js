@@ -19,7 +19,7 @@ const DifficultySelector = ({ difficulty, setDifficulty }) => {
             color="primary"
           />
         }
-        label={difficulty === 'difficult' ? 'Difficult' : 'Easy'}
+        label={difficulty === 'difficult' ? 'Difficult' : 'Easy'} style={{ color: 'white' }}
       />
     </div>
   );

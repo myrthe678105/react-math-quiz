@@ -7,7 +7,7 @@ body{
 }
 /* radio btn */
 .component-container {
-background-color: cadetblue;
+background-color:#594864;
 justify-content: center;
 display: flex;
 align-items: center;
@@ -38,4 +38,3 @@ align-items: center;
   justify-self: center;
   flex-direction: column;
 }
-
