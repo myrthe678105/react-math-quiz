@@ -65,13 +65,13 @@ const MathExercise = () => {
     }
     console.log(expectedResult);
   
-    if (userParsedAnswer === parseFloat(expectedResult)) { //check for correct answer, if correct, new question after 3 seconds
+    if (userParsedAnswer === parseFloat(expectedResult)) { //check for correct answer, if correct, new question after 1.5 seconds
         setIsCorrect(true);
         setTimeout(() => {
             setUserAnswer('');
           generateExercise(); 
           setIsCorrect(null);
-        }, 2000);
+        }, 1500);
       } else {
         setIsCorrect(false);
       }
