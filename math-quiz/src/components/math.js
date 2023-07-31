@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
-import '../App.css'
+import '../App.css';
+
+// Import the components we created
+import DifficultySelector from './radioButton';
+import ExerciseDisplay from './mathQuestion';
+import UserInputForm from './userInput';
+import ResultMessage from './resultMessage';
 
 const MathExercise = () => {
   const [equation, setEquation] = useState('');
   const [userAnswer, setUserAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState(null);
-  const [difficulty, setDifficulty] = useState('easy'); // 'easy' or 'difficult'
+  const [difficulty, setDifficulty] = useState('easy');
 
   useEffect(() => {
     generateExercise();
@@ -70,44 +76,13 @@ const MathExercise = () => {
         setIsCorrect(false);
       }
     };
-  
 
   return (
     <div>
-      <div className="component-container">
-        <label>
-          <input
-            type="radio"
-            value="easy"
-            checked={difficulty === 'easy'}
-            onChange={() => setDifficulty('easy')}
-          />
-          Easy
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="difficult"
-            checked={difficulty === 'difficult'}
-            onChange={() => setDifficulty('difficult')}
-          />
-          Difficult
-        </label>
-      </div>
-      <p>
-        Solve the following exercise: {equation}
-      </p>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={userAnswer}
-          onChange={(e) => setUserAnswer(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      {isCorrect !== null && (
-        <p>{isCorrect ? 'Correct!' : 'Incorrect. Try again.'}</p>
-      )}
+      <DifficultySelector difficulty={difficulty} setDifficulty={setDifficulty} />
+      <ExerciseDisplay equation={equation} />
+      <UserInputForm userAnswer={userAnswer} setUserAnswer={setUserAnswer} handleSubmit={handleSubmit} />
+      <ResultMessage isCorrect={isCorrect} />
     </div>
   );
 };
