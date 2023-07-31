@@ -78,7 +78,7 @@ const MathExercise = () => {
     };
 
   return (
-    <div>
+    <div className='page'>
       <DifficultySelector difficulty={difficulty} setDifficulty={setDifficulty} />
       <ExerciseDisplay equation={equation} />
       <UserInputForm userAnswer={userAnswer} setUserAnswer={setUserAnswer} handleSubmit={handleSubmit} />
