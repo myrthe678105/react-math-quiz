@@ -5,8 +5,6 @@ import '../css/mathQuestion.css';
 import '../css/radioButton.css';
 import '../css/resultMessage.css';
 import '../css/userInput.css';
-
-// Import the components we created
 import DifficultySelector from './radioButton';
 import ExerciseDisplay from './mathQuestion';
 import UserInputForm from './userInput';
@@ -22,23 +20,19 @@ const MathExercise = () => {
     generateExercise();
   }, [difficulty]);
 
-  const generateRandomNumbers = (min, max) => {
-    return _.random(min, max);
-  };
-
   const generateRandomOperator = () => {
     const operators = ['+', '-', '*', '/'];
     return _.sample(operators);
   };
-  const generateSingleEquation = () => {
+  const generateEasyEquation = () => {
     let operator;
     operator = generateRandomOperator();
-    setEquation(`${generateRandomNumbers(1, 10)} ${operator} ${generateRandomNumbers(1, 10)}`);
+    setEquation(`${_.random(1, 10)} ${operator} ${_.random(1, 10)}`);
   };
 
   const generateDifficultEquation = () => {
-    const numOperands = _.random(2, 5); // number of operations
-    const operands = Array.from({ length: numOperands }, () => _.random(1, 10)); // Random operands array
+    const numOperands = _.random(2, 5); // random number of operations
+    const operands = Array.from({ length: numOperands }, () => _.random(1, 10)); // random numbers
     const equation = operands.reduce((acc, operand, index) => {
       const randomOperator = generateRandomOperator();
       const separator = index === 0 ? '' : ' ' + randomOperator + ' ';
@@ -50,7 +44,7 @@ const MathExercise = () => {
 
   const generateExercise = () => {
     if (difficulty === 'easy') {
-      generateSingleEquation();
+      generateEasyEquation();
     } else if (difficulty === 'difficult') {
       generateDifficultEquation();
     }
